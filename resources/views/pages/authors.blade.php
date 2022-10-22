@@ -28,7 +28,7 @@
 
                 </div>
             @endforeach
-            <div class="offset-md-5 mt-3">
+            <div class="d-flex justify-content-center">
                 {{ $users->links() }}
             </div>
         </div>

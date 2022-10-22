@@ -2,7 +2,26 @@
 
 @section('content')
     <div class="container">
-        <div class="card bg-dark">
+
+        <div class="d-flex justify-content-end">
+            {{ $posts->links() }}
+        </div> 
+
+        <li class="nav-item dropdown" pos>
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+            </a>
+            <ul class="dropdown-menu">
+                @foreach (App\Models\Category::whereHas('posts')->get()->sortBy('category') as $category)
+                    <li><a class="dropdown-item"
+                            href="{{ url('categories', ['id' => $category->id]) }}">{{ $category->category }}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </li>
+
+        <div class="bg-dark">
             <div class="card bg-dark ">
                 <h1 class="text-light text-end" style="font-size:20px; font-weight:400;">
                     {{ __($category->category . ' Posts') }}</h1>
@@ -10,7 +29,7 @@
 
             <div class="row" style="height: 100vh; overflow: auto">
                 @foreach ($posts as $post)
-                    <div class="col-md-4 mt-1">
+                    <div class="col-md-4 ">
 
                         <div class="card {{ $post->user->gender === 'female' ? 'f1' : 'm1' }}">
                             <div class="card">
@@ -60,11 +79,6 @@
                     </div>
                 @endforeach
             </div>
-            {{-- 
-    <div class="offset-md-5">
-        {{ $posts->links() }}
-    </div> --}}
-
         </div>
     </div>
     <style>

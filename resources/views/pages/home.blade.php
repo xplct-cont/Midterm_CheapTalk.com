@@ -3,21 +3,23 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col">
-                <select class="form-select" name="categories">
-                    <option value="all">All</option>
-                    <option value="Business">Business</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Education">Education</option>
-                    <option value="Politics">Politics</option>
-                    <option value="Religion">Religion</option>
-                    <option value="Romance">Romance</option>
-
-                </select>
+            <div class="col">      
+                <li class="nav-item dropdown" style="width: 100px;">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach (App\Models\Category::whereHas('posts')->get()->sortBy('category') as $category)
+                            <li><a class="dropdown-item"
+                                    href="{{ url('categories', ['id' => $category->id]) }}">{{ $category->category }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
             </div>
 
-            <div class="col">
-            
+            <div class="mx-auto">
                 <div class="search" style="position:relative; top: 5px;">
                     <div class="mx-auto" style="width:450px;">
                         <form action="{{ route('posts') }}" method="GET" role="search">
@@ -32,17 +34,21 @@
                                 <a href="{{ route('posts') }}" class=" mt-0">
                                     <span class="input-group-btn">
                                         <button class="btn" type="button" title="Refresh page">
-                                            <span class="text-light"></span>
+                                            <span class="text-light">Refresh</span>
                                         </button>
                                     </span>
                                 </a>
                             </div>
                         </form>
                     </div>
+               </div>
             </div>
-        </div>
-
-        <div class="card mt-3 bg-dark">
+  
+             <div class="d-flex justify-content-end">
+                {{ $posts->links() }}
+            </div> 
+         
+        <div class="card bg-dark">
             <div class="card-header">
                 <h3 class="text-light text-end" style="font-size:20px; font-weight:400; ">Recent Posts</h3>
             </div>
@@ -95,10 +101,6 @@
                     </div>
                 @endforeach
             </div>
-
-            {{-- <div class="offset-md-5">
-        {{ $posts->links() }}
-    </div> --}}
         </div>
     </div>
 

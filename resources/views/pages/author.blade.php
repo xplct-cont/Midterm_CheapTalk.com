@@ -56,9 +56,9 @@
                 </div>
             @endforeach
 
-            {{-- <div class="col offset-md-5">
+            <div class="d-flex justify-content-center">
         {{ $posts->links() }}
-    </div> --}}
+    </div>
         </div>
     </div>
     <style>

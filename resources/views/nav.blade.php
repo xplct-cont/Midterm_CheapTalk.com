@@ -12,7 +12,7 @@
                 @if (auth()->check())
                     <a class="nav-link text-light" href="/posts">Posts</a>
 
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
@@ -24,9 +24,9 @@
                                 </li>
                             @endforeach
                         </ul>
-                    </li>
+                    </li> --}}
                     <a class="nav-link text-light" href="/authors">Authors</a>
-                    <div class=""style="position:relative; left: 400px;">
+                    <div class=""style="position:relative; left: 550px;">
                         <li class="nav-item dropdown btn btn-sm">
                             <a class="nav-link dropdown-toggle text-light" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
